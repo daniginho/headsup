@@ -10,12 +10,12 @@ zero = [
     [1,1,1,1,1,1],
 ]
 one = [  
-   [0,0,1,1,0,0],
+    [0,1,1,1,0,0],
+    [1,1,1,1,0,0],
     [0,0,1,1,0,0],
     [0,0,1,1,0,0],
     [0,0,1,1,0,0],
-    [0,0,1,1,0,0],
-    [0,0,1,1,0,0],
+    [1,1,1,1,1,1],
 ]
 two = [
     [1,1,1,1,1,0],
@@ -48,6 +48,7 @@ window_height = 540
 current_text_colour = possible_colours[0]
 current_background_colour = possible_colours[1]
 box_x = 0 
+countdown = 150
 def setup():
     size(window_width, window_height)
     #no_stroke()
@@ -61,7 +62,8 @@ def draw():
     global current_background_colour
     global possible_colours
     global box_x
-    
+    global countdown
+
     if key == "1":
         time_to_change = 30
     elif key == "2":
@@ -90,10 +92,14 @@ def draw():
     fill( current_text_colour[0], current_text_colour[1], current_text_colour[2], 255)
     box_size = 30
 
-    for y in range(0, 6):
-        for x in range(0, 6):
-            if three[y][x]==1:
-                rect(box_x + (x * box_size), (y * box_size), box_size, box_size )
+    if countdown >= 0:
+        letters = [zero, one, two,three]
+        letter = letters[int(countdown/40)]
+        countdown -= 1
+        for y in range(0, 6):
+            for x in range(0, 6):
+                if letter[y][x]==1:
+                    rect(box_x + (x * box_size), (y * box_size), box_size, box_size )
 
     box_x += 1
     
