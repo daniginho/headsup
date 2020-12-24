@@ -76,7 +76,8 @@ def draw():
         time_to_change = 150
     elif key == "6":
         time_to_change = 180
-
+    elif  key == "0":
+        countdown = 150
     if (frame_count % time_to_change) == 0:
     
         text_rand = random.randint(0,len(possible_colours) - 1)
@@ -101,10 +102,7 @@ def draw():
                 if letter[y][x]==1:
                     rect(box_x + (x * box_size),box_y + (y * box_size), box_size, box_size )
 
-    #box_x += 1
     
-    #if box_x >= window_width:
-    #    box_x = 0
 
 
 def key_pressed(event):
