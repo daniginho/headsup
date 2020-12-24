@@ -1,6 +1,10 @@
 from p5 import *
 import random
 
+window_width =1000
+window_height = 670
+
+font_size= 6
 zero = [
     [0,0,1,1,1,0],
     [0,1,0,0,0,1],
@@ -41,14 +45,15 @@ white = [255, 255, 255]
 yellow = [204, 204, 0]
 
 possible_colours = [red, blue, white, yellow]
+
 time_to_change = 120
-window_width =720
-window_height = 540
 
 current_text_colour = possible_colours[0]
 current_background_colour = possible_colours[1]
-box_x = 360-90
-box_y = 270-90
+box_size = 45
+
+box_x = (window_width/2)-(box_size* (font_size/2))
+box_y = (window_height/2)-(box_size* (font_size/2))
 countdown = 150
 def setup():
     size(window_width, window_height)
@@ -64,6 +69,7 @@ def draw():
     global box_x
     global countdown
     global box_y
+    global box_size
     if key == "1":
         time_to_change = 30
     elif key == "2":
@@ -91,14 +97,14 @@ def draw():
     background(current_background_colour[0], current_background_colour[1], current_background_colour[2])
 
     fill( current_text_colour[0], current_text_colour[1], current_text_colour[2], 255)
-    box_size = 30
+    
 
     if countdown >= 0:
         letters = [zero, one, two,three]
         letter = letters[int(countdown/40)]
         countdown -= 1
-        for y in range(0, 6):
-            for x in range(0, 6):
+        for y in range(0, font_size):
+            for x in range(0, font_size):
                 if letter[y][x]==1:
                     rect(box_x + (x * box_size),box_y + (y * box_size), box_size, box_size )
 
